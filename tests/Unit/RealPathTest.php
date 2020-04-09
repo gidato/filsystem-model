@@ -4,9 +4,9 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Gidato\Filesystem\Filesystem;
-use Gidato\Filesystem\Models\RealPath;
-use Gidato\Filesystem\Models\Base;
-use Gidato\Filesystem\Models\Directory;
+use Gidato\Filesystem\Model\RealPath;
+use Gidato\Filesystem\Model\Base;
+use Gidato\Filesystem\Model\Directory;
 use Mockery;
 use InvalidArgumentException;
 use RuntimeException;

@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Gidato\Filesystem\Memory;
-use Gidato\Filesystem\Models\ReadOnlyBase;
+use Gidato\Filesystem\Model\ReadOnlyBase;
 
 class ReadOnlyBaseTest extends TestCase
 {

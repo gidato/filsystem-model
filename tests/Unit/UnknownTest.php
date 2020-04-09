@@ -4,8 +4,8 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Gidato\Filesystem\Memory;
-use Gidato\Filesystem\Models\Base;
-use Gidato\Filesystem\Models\Unknown;
+use Gidato\Filesystem\Model\Base;
+use Gidato\Filesystem\Model\Unknown;
 use InvalidArgumentException;
 
 class UnknownTest extends TestCase

@@ -1,11 +1,11 @@
-# Gidato / Filesystem-Objects
+# Gidato / Filesystem-Model
 
 Converts the file system to simple node objects, and limits access within tree from a set base
 
 ## Installation
 ```
 
-composer require gidato/filesystem-objects
+composer require gidato/filesystem-model
 
 ```
 
@@ -14,13 +14,13 @@ composer require gidato/filesystem-objects
 ```php
 <?php
 
-use Gidato\Filesystem\Models\Base;
+use Gidato\Filesystem\Model\Base;
 $base = new Base('/test/dir');
 $directory = $base->with('sample');
 $directory->create();
 
 
-use Gidato\Filesystem\Models\ReadOnlyBase;
+use Gidato\Filesystem\Model\ReadOnlyBase;
 $base = new Base('/test/read_only_dir');
 $base->isReadOnly() === true;
 
@@ -53,7 +53,7 @@ Everything is a **Path**
 
 ```php
 <?php
-namespace Gidato\Filesystem\Models;
+namespace Gidato\Filesystem\Model;
 
 Class Base extends Directory implements GlobParent {
 
@@ -103,7 +103,7 @@ Class Base extends Directory implements GlobParent {
 
 ```php
 <?php
-namespace Gidato\Filesystem\Models;
+namespace Gidato\Filesystem\Model;
 
 Class BasicFile extends File {
 
@@ -143,7 +143,7 @@ Class BasicFile extends File {
 
 ```php
 <?php
-namespace Gidato\Filesystem\Models;
+namespace Gidato\Filesystem\Model;
 
 Class Directory extends RealPath implements GlobParent {
 
@@ -193,7 +193,7 @@ Class Directory extends RealPath implements GlobParent {
 
 ```php
 <?php
-namespace Gidato\Filesystem\Models;
+namespace Gidato\Filesystem\Model;
 
 Abstract Class File extends RealPath {
 
@@ -228,7 +228,7 @@ Abstract Class File extends RealPath {
 
 ```php
 <?php
-namespace Gidato\Filesystem\Models;
+namespace Gidato\Filesystem\Model;
 
 Class FileTypes {
 
@@ -243,7 +243,7 @@ Class FileTypes {
 
 ```php
 <?php
-namespace Gidato\Filesystem\Models;
+namespace Gidato\Filesystem\Model;
 
 Class Glob extends Path implements GlobParent {
 
@@ -269,7 +269,7 @@ Class Glob extends Path implements GlobParent {
 
 ```php
 <?php
-namespace Gidato\Filesystem\Models;
+namespace Gidato\Filesystem\Model;
 
 Interface GlobParent {
 
@@ -284,7 +284,7 @@ Interface GlobParent {
 
 ```php
 <?php
-namespace Gidato\Filesystem\Models;
+namespace Gidato\Filesystem\Model;
 
 Class JsonFile extends File {
 
@@ -323,7 +323,7 @@ Class JsonFile extends File {
 
 ```php
 <?php
-namespace Gidato\Filesystem\Models;
+namespace Gidato\Filesystem\Model;
 
 Abstract Class Path {
 
@@ -342,7 +342,7 @@ Abstract Class Path {
 
 ```php
 <?php
-namespace Gidato\Filesystem\Models;
+namespace Gidato\Filesystem\Model;
 
 Class ReadOnlyBase extends Base implements GlobParent {
 
@@ -392,7 +392,7 @@ Class ReadOnlyBase extends Base implements GlobParent {
 
 ```php
 <?php
-namespace Gidato\Filesystem\Models;
+namespace Gidato\Filesystem\Model;
 
 Abstract Class RealPath extends Path {
 
@@ -424,7 +424,7 @@ Abstract Class RealPath extends Path {
 
 ```php
 <?php
-namespace Gidato\Filesystem\Models;
+namespace Gidato\Filesystem\Model;
 
 Class Unknown extends RealPath {
 
@@ -452,4 +452,3 @@ Class Unknown extends RealPath {
   public  Path::getName();
 }
 ```
-

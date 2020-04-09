@@ -1,5 +1,5 @@
 {
-    "name": "gidato/filesystem-objects",
+    "name": "gidato/filesystem-model",
     "description": "Representing filesystem struture as objects for each node",
     "keywords": [
         "gidato",
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Gidato\\Filesystem\\Models\\": "src/Models"
+            "Gidato\\Filesystem\\Model\\": "src/Model"
         }
     },
     "autoload-dev": {

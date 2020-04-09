@@ -4,9 +4,9 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Gidato\Filesystem\Filesystem;
-use Gidato\Filesystem\Models\Path;
-use Gidato\Filesystem\Models\Base;
-use Gidato\Filesystem\Models\Directory;
+use Gidato\Filesystem\Model\Path;
+use Gidato\Filesystem\Model\Base;
+use Gidato\Filesystem\Model\Directory;
 use Mockery;
 
 class PathTest extends TestCase

@@ -4,9 +4,9 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Gidato\Filesystem\Memory;
-use Gidato\Filesystem\Models\FileTypes;
-use Gidato\Filesystem\Models\BasicFile;
-use Gidato\Filesystem\Models\JsonFile;
+use Gidato\Filesystem\Model\FileTypes;
+use Gidato\Filesystem\Model\BasicFile;
+use Gidato\Filesystem\Model\JsonFile;
 use InvalidArgumentException;
 
 class FileTypesTest extends TestCase

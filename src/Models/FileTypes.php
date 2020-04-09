@@ -1,6 +1,6 @@
 <?php
 
-namespace Gidato\Filesystem\Models;
+namespace Gidato\Filesystem\Model;
 
 use InvalidArgumentException;
 

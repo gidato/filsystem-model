@@ -1,8 +1,8 @@
 <?php
 
-namespace Gidato\Filesystem\Models;
+namespace Gidato\Filesystem\Model;
 
-use App\Models\Base\Base;
+use App\Model\Base\Base;
 use App\Support\Service\Filesystem;
 use Tightenco\Collect\Support\Collection;
 use RuntimeException;

@@ -3,14 +3,14 @@
 chdir(dirname(__DIR__));
 include('vendor/autoload.php');
 
-$dir = dirname(__DIR__) . '/src/Models/';
+$dir = dirname(__DIR__) . '/src/Model/';
 
 $output = file_get_contents(__DIR__ . '/prefix.md');
 
 foreach (glob("$dir*") as $file)
 {
     $name = substr(basename($file), 0, -4);
-    $class = 'Gidato\\Filesystem\\Models\\' . $name;
+    $class = 'Gidato\\Filesystem\\Model\\' . $name;
     $output .= getClassStructureOuput($class, $name);
 }
 
@@ -36,7 +36,7 @@ function getClassStructureOuput($class, $name)
 
     $output = "\n\n```php\n";
     $output .= "<?php\n";
-    $output .= "namespace Gidato\\Filesystem\\Models;\n\n";
+    $output .= "namespace Gidato\\Filesystem\\Model;\n\n";
     $output .= "{$type} {$name}{$extends}{$interfaces} {\n";
 
     $methods = getClassMethods($reflected);
@@ -112,7 +112,7 @@ function getMethodParameters($method)
 
 function stripNamespace($name)
 {
-    if (preg_match('/^Gidato\\\\Filesystem\\\\Models\\\\(.*)$/', $name, $matches)) {
+    if (preg_match('/^Gidato\\\\Filesystem\\\\Model\\\\(.*)$/', $name, $matches)) {
         return $matches[1];
     }
 

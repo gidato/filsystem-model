@@ -1,11 +1,11 @@
-# Gidato / Filesystem-Objects
+# Gidato / Filesystem-Model
 
 Converts the file system to simple node objects, and limits access within tree from a set base
 
 ## Installation
 ```
 
-composer require gidato/filesystem-objects
+composer require gidato/filesystem-model
 
 ```
 
@@ -14,13 +14,13 @@ composer require gidato/filesystem-objects
 ```php
 <?php
 
-use Gidato\Filesystem\Models\Base;
+use Gidato\Filesystem\Model\Base;
 $base = new Base('/test/dir');
 $directory = $base->with('sample');
 $directory->create();
 
 
-use Gidato\Filesystem\Models\ReadOnlyBase;
+use Gidato\Filesystem\Model\ReadOnlyBase;
 $base = new Base('/test/read_only_dir');
 $base->isReadOnly() === true;
 

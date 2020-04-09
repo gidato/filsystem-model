@@ -4,7 +4,7 @@ namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Gidato\Filesystem\Memory;
-use Gidato\Filesystem\Models\Base;
+use Gidato\Filesystem\Model\Base;
 
 class BaseTest extends TestCase
 {
