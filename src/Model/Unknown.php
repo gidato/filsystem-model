@@ -10,4 +10,9 @@ class Unknown extends RealPath
         $this->setParent($parent);
         $this->setName($name);
     }
+
+    public function diff(Path $comparison) : bool
+    {
+        return get_class($comparison) != get_class($this);
+    }
 }

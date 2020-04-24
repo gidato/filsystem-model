@@ -294,8 +294,27 @@ class BasicFileTest extends TestCase
 
         $path = new BasicFile($this->parent, 'othertestfile');
         $this->assertEquals(null, $path->size);
+    }
 
+    public function testDiffWhenSame()
+    {
+        $this->path->setContents('a');
+        $comparison = new BasicFile($this->parent, 'testfile2');
+        $comparison->setContents('a');
+        $this->assertFalse($this->path->diff($comparison));
+    }
 
+    public function testDiffWhenSameNameDifferentType()
+    {
+        $this->assertTrue($this->path->diff($this->parent));
+    }
+
+    public function testDiffWhenContentsAreDifferent()
+    {
+        $this->path->setContents('a');
+        $comparison = new BasicFile($this->parent, 'testfile2');
+        $comparison->setContents('b');
+        $this->assertTrue($this->path->diff($comparison));
     }
 
 }

@@ -42,4 +42,14 @@ class UnknownTest extends TestCase
         $path = new Unknown($this->base, '>');
     }
 
+    public function testDiffWhenSame()
+    {
+        $comparison = new Unknown($this->base, 'another');
+        $this->assertFalse($this->path->diff($comparison));
+    }
+
+    public function testDiffWhenSameNameDifferentType()
+    {
+        $this->assertTrue($this->path->diff($this->base));
+    }
 }

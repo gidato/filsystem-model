@@ -80,6 +80,20 @@ abstract class File extends RealPath
         }
     }
 
+    public function diff(Path $comparison) : bool
+    {
+        if (get_class($comparison) != get_class($this)) {
+            return true;
+        }
+
+        if ($this->exists() != $comparison->exists()) {
+            return true;
+        }
+
+        return $this->contents != $comparison->contents;
+    }
+
+
     public function getSize() : ?int
     {
         return $this->exists()

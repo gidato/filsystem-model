@@ -487,6 +487,46 @@ class DirectoryTest extends TestCase
         $this->assertEquals('/test/testdir/*', $glob->getFullPath());
     }
 
+    public function testDiffWhenSame()
+    {
+        $this->filesystem->mkdir('/test/testdir/dir',0777,true);
+        $this->filesystem->file_put_contents('/test/testdir/dir/sub_file','a');
+        $this->filesystem->mkdir('/test/testdir/dir/sub_dir');
+        $this->filesystem->file_put_contents('/test/testdir/dir/sub_dir/sub_file','b');
+        $this->filesystem->mkdir('/test/testdir/dir2',0777,true);
+        $this->filesystem->file_put_contents('/test/testdir/dir2/sub_file','a');
+        $this->filesystem->mkdir('/test/testdir/dir2/sub_dir');
+        $this->filesystem->file_put_contents('/test/testdir/dir2/sub_dir/sub_file','b');
+        $this->assertFalse($this->path->withDirectory('dir')->diff($this->path->withDirectory('dir2')));
+    }
 
+    public function testDiffWhenDifferentNumberOfItems()
+    {
+        $this->filesystem->mkdir('/test/testdir/dir',0777,true);
+        $this->filesystem->file_put_contents('/test/testdir/dir/sub_file','a');
+        $this->filesystem->mkdir('/test/testdir/dir2',0777,true);
+        $this->assertTrue($this->path->withDirectory('dir')->diff($this->path->withDirectory('dir2')));
+    }
 
+    public function testDiffWhenSameNameDifferentType()
+    {
+        $this->filesystem->mkdir('/test/testdir/dir',0777,true);
+        $this->filesystem->file_put_contents('/test/testdir/dir/sub_file','a');
+        $this->filesystem->mkdir('/test/testdir/dir2',0777,true);
+        $this->filesystem->mkdir('/test/testdir/dir2/sub_file');
+        $this->assertTrue($this->path->withDirectory('dir')->diff($this->path->withDirectory('dir2')));
+    }
+
+    public function testDiffWhenContentsOfSubdirAreDifferent()
+    {
+        $this->filesystem->mkdir('/test/testdir/dir',0777,true);
+        $this->filesystem->file_put_contents('/test/testdir/dir/sub_file','a');
+        $this->filesystem->mkdir('/test/testdir/dir/sub_dir');
+        $this->filesystem->file_put_contents('/test/testdir/dir/sub_dir/sub_file','b');
+        $this->filesystem->mkdir('/test/testdir/dir2',0777,true);
+        $this->filesystem->file_put_contents('/test/testdir/dir2/sub_file','a');
+        $this->filesystem->mkdir('/test/testdir/dir2/sub_dir');
+        $this->filesystem->file_put_contents('/test/testdir/dir2/sub_dir/sub_file','c');
+        $this->assertTrue($this->path->withDirectory('dir')->diff($this->path->withDirectory('dir2')));
+    }
 }

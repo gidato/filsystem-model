@@ -194,6 +194,38 @@ class Directory extends RealPath implements GlobParent
             ->all();
     }
 
+    public function diff(Path $comparison) : bool
+    {
+        if (get_class($comparison) != get_class($this)) {
+            return true;
+        }
+
+        if ($this->exists() != $comparison->exists()) {
+            return true;
+        }
+
+        $comparisonPaths = $comparison->list();
+        $paths = $this->list();
+
+        if (count($paths) != count($comparisonPaths)) {
+            return true;
+        }
+
+        foreach ($paths as $i => $path) {
+            $comparison = $comparisonPaths[$i];
+
+            if ($path->name != $comparison->name) {
+                return true;
+            }
+
+            if ($path->diff($comparison)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public function directory(string $name): Directory
     {
         return new Directory($this, $name);
