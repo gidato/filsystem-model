@@ -286,4 +286,16 @@ class BasicFileTest extends TestCase
         $this->assertTrue($this->path->isFile());
     }
 
+    public function testFileSize()
+    {
+        $this->path->setContents('sample');
+        $this->assertEquals(6, $this->path->getSize());
+        $this->assertEquals(6, $this->path->size);
+
+        $path = new BasicFile($this->parent, 'othertestfile');
+        $this->assertEquals(null, $path->size);
+
+
+    }
+
 }

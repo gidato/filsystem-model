@@ -9,7 +9,7 @@
     "license": "MIT",
     "require": {
         "tightenco/collect": "^7.4",
-        "gidato/filesystem": "^0.0.5"
+        "gidato/filesystem": "^0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5",

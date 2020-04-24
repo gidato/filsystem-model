@@ -80,6 +80,13 @@ abstract class File extends RealPath
         }
     }
 
+    public function getSize() : ?int
+    {
+        return $this->exists()
+            ? $this->getFilesystem()->filesize($this->getFullPath())
+            : null;
+    }
+
     public function isFile(): bool
     {
         return true;
@@ -90,7 +97,7 @@ abstract class File extends RealPath
      */
     public function __get($name)
     {
-        $fields = ['contents'];
+        $fields = ['contents', 'size'];
         if (in_array($name, $fields)) {
             $method = 'get' . ucfirst($name);
             return $this->$method();
