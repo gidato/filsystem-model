@@ -9,6 +9,7 @@ use Gidato\Filesystem\Model\BasicFile;
 use Gidato\Filesystem\Model\Base;
 use Gidato\Filesystem\Model\ReadOnlyBase;
 use Gidato\Filesystem\Model\Unknown;
+use Gidato\Filesystem\Model\File;
 use Gidato\Filesystem\Model\Directory;
 use Mockery;
 use InvalidArgumentException;
@@ -315,6 +316,19 @@ class BasicFileTest extends TestCase
         $comparison = new BasicFile($this->parent, 'testfile2');
         $comparison->setContents('b');
         $this->assertTrue($this->path->diff($comparison));
+    }
+
+    public function testRenameToWhenSourceIsAFile()
+    {
+        $this->path->setContents('some text to make sure its the same file');
+        $destination = $this->parent->with('destfile');
+        $this->assertInstanceOf(Unknown::class, $destination);
+
+        $destination = $this->path->renameTo($destination);
+        $this->assertInstanceOf(File::class, $destination);
+
+        $this->assertFalse($this->path->exists());
+        $this->assertEquals('some text to make sure its the same file', $destination->getContents());
     }
 
 }

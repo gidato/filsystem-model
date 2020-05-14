@@ -93,6 +93,32 @@ class Directory extends RealPath implements GlobParent
         $source->copyTo($this);
     }
 
+    public function renameTo(RealPath $target): Directory
+    {
+        if ($target->exists()) {
+            throw new InvalidArgumentException('Destination exists');
+        }
+
+        if ($target->isFile()) {
+            throw new InvalidArgumentException('Destination is a file');
+        }
+
+        if (
+            false === $this->getFilesystem()->rename(
+                $this->getFullPath(),
+                $target->getFullPath()
+            )
+        ) {
+            throw new RuntimeException(sprintf(
+                'Failed to rename from %s to %s',
+                (string) $this->getPath(),
+                (string) $target->getPath()
+            ));
+        }
+
+        return $target->getParent()->with($target->getName());
+    }
+
     public function empty(bool $force = false): void
     {
         foreach ($this->list() as $path) {

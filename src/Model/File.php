@@ -59,6 +59,32 @@ abstract class File extends RealPath
         }
     }
 
+    public function renameTo(RealPath $target): File
+    {
+        if ($target->exists()) {
+            throw new InvalidArgumentException('Destination exists');
+        }
+
+        if ($target->isDirectory()) {
+            throw new InvalidArgumentException('Destination is a directory');
+        }
+
+        if (
+            false === $this->getFilesystem()->rename(
+                $this->getFullPath(),
+                $target->getFullPath()
+            )
+        ) {
+            throw new RuntimeException(sprintf(
+                'Failed to rename from %s to %s',
+                (string) $this->getPath(),
+                (string) $target->getPath()
+            ));
+        }
+
+        return $target->getParent()->with($target->getName());
+    }
+
     public function delete(bool $force = false): void
     {
         if (!$this->exists()) {

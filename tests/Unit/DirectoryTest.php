@@ -529,4 +529,21 @@ class DirectoryTest extends TestCase
         $this->filesystem->file_put_contents('/test/testdir/dir2/sub_dir/sub_file','c');
         $this->assertTrue($this->path->withDirectory('dir')->diff($this->path->withDirectory('dir2')));
     }
+
+    public function testRenameToWhenSourceIsADirectory()
+    {
+        $this->path->create();
+
+        $file = $this->path->withFile('file1');
+        $file->setContents('some text to make sure its the same file');
+
+        $destination = $this->base->with('destdir');
+        $this->assertInstanceOf(Unknown::class, $destination);
+
+        $destination = $this->path->renameTo($destination);
+        $this->assertInstanceOf(Directory::class, $destination);
+
+        $this->assertFalse($this->path->exists());
+        $this->assertEquals('some text to make sure its the same file', $destination->withFile('file1')->getContents());
+    }
 }
